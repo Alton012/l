@@ -1,0 +1,121 @@
+local rage_phrases = {
+    "[Chorus] Feelin' like I got my own rage",
+    "[Verse 1] I got a problem, yeah, with holdin' on, holdin' on",
+    "[Verse 1] And I just went to the store, they bought out all the lean",
+    "[Verse 1] I'm with your ho and she think I'm famous",
+    "[Chorus] Feelin' the rage, got me goin' crazy",
+    "[Verse 2] I can't escape, this life I made",
+    "[Verse 2] From nothin' to somethin', they envy the way",
+    "[Verse 2] I'm chasing the stars, no time to delay"
+}
+
+local phrases = {
+    "[Chorus: KSI] I'm in the thick of it, everybody knows",
+    "[Chorus: KSI] They know me where it snows, I skied in and they froze",
+    "[Chorus: KSI] I don't know no nothin' 'bout no ice, I'm just cold",
+    "[Chorus: KSI] Forty somethin' milli' subs or so, I've been told",
+    "[Verse 1: KSI] I'm in my prime, and this ain't even final form",
+    "[Verse 1: KSI] They knocked me down, but still, my feet, they find the floor",
+    "[Verse 1: KSI] I went from living rooms straight out to sold-out tours",
+    "[Verse 1: KSI] Life's a fight, but trust, I'm ready for the war"
+}
+
+local eye_of_the_tiger_phrases = {
+    "[Chorus] It's the eye of the tiger, it's the thrill of the fight",
+    "[Verse 1] Rising up to the challenge of our rival",
+    "[Verse 1] And the last known survivor stalks his prey in the night",
+    "[Verse 1] And he's watching us all with the eye of the tiger",
+    "[Verse 2] Face to face, out in the heat",
+    "[Verse 2] Hangin' tough, stayin' hungry",
+    "[Verse 2] They stack the odds, still we take to the street",
+    "[Verse 2] For the kill with the skill to survive"
+}
+
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local CloseButton = Instance.new("TextButton")
+local SpeakButton = Instance.new("TextButton")
+local RageButton = Instance.new("TextButton")
+local EyeOfTheTigerButton = Instance.new("TextButton")
+
+ScreenGui.Parent = game:GetService("CoreGui")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.BorderSizePixel = 2
+Frame.BorderColor3 = Color3.new(0.7, 0.7, 0.7)
+Frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+Frame.Size = UDim2.new(0, 300, 0, 200)
+Frame.Active = true
+Frame.Draggable = true
+
+Title.Parent = Frame
+Title.BackgroundColor3 = Color3.new(1, 1, 1)
+Title.BorderSizePixel = 0
+Title.Position = UDim2.new(0, 0, 0, 0)
+Title.Size = UDim2.new(1, 0, 0, 50)
+Title.Font = Enum.Font.SourceSansBold
+Title.Text = "Say Lyrics"
+Title.TextSize = 24
+Title.TextColor3 = Color3.new(0, 0, 0)
+
+CloseButton.Parent = Frame
+CloseButton.BackgroundColor3 = Color3.new(0.7, 0.7, 0.7)
+CloseButton.Size = UDim2.new(0, 30, 0, 30)
+CloseButton.Position = UDim2.new(1, -40, 0, 10)
+CloseButton.Text = "X"
+CloseButton.Font = Enum.Font.SourceSansBold
+CloseButton.TextSize = 18
+CloseButton.TextColor3 = Color3.new(0, 0, 0)
+
+SpeakButton.Parent = Frame
+SpeakButton.BackgroundColor3 = Color3.new(0.7, 0.7, 0.7)
+SpeakButton.Size = UDim2.new(0, 100, 0, 30)
+SpeakButton.Position = UDim2.new(0.2, -50, 0.5, -15)
+SpeakButton.Text = "Say Lyrics"
+SpeakButton.Font = Enum.Font.SourceSansBold
+SpeakButton.TextSize = 18
+SpeakButton.TextColor3 = Color3.new(0, 0, 0)
+
+RageButton.Parent = Frame
+RageButton.BackgroundColor3 = Color3.new(0.7, 0.7, 0.7)
+RageButton.Size = UDim2.new(0, 100, 0, 30)
+RageButton.Position = UDim2.new(0.5, -50, 0.5, -15)
+RageButton.Text = "Sing Rage"
+RageButton.Font = Enum.Font.SourceSansBold
+RageButton.TextSize = 18
+RageButton.TextColor3 = Color3.new(0, 0, 0)
+
+EyeOfTheTigerButton.Parent = Frame
+EyeOfTheTigerButton.BackgroundColor3 = Color3.new(0.7, 0.7, 0.7)
+EyeOfTheTigerButton.Size = UDim2.new(0, 100, 0, 30)
+EyeOfTheTigerButton.Position = UDim2.new(0.8, -50, 0.5, -15)
+EyeOfTheTigerButton.Text = "Eye of Tiger"
+EyeOfTheTigerButton.Font = Enum.Font.SourceSansBold
+EyeOfTheTigerButton.TextSize = 18
+EyeOfTheTigerButton.TextColor3 = Color3.new(0, 0, 0)
+
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+SpeakButton.MouseButton1Click:Connect(function()
+    for _, phrase in ipairs(phrases) do
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(phrase, "All")
+        wait(2) -- Wait 2 seconds before saying the next phrase
+    end
+end)
+
+RageButton.MouseButton1Click:Connect(function()
+    for _, phrase in ipairs(rage_phrases) do
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(phrase, "All")
+        wait(2) -- Wait 2 seconds before saying the next phrase
+    end
+end)
+
+EyeOfTheTigerButton.MouseButton1Click:Connect(function()
+    for _, phrase in ipairs(eye_of_the_tiger_phrases) do
+        game.ReplicatedStorage.DefaultChatSystemChatEvents.SayMessageRequest:FireServer(phrase, "All")
+        wait(2) -- Wait 2 seconds before saying the next phrase
+    end
+end)
